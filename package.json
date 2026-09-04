@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "npm --prefix my-react-app run dev",
-    "build": "npm --prefix my-react-app run build",
+    "build": "npm install --prefix my-react-app --include=dev && npm --prefix my-react-app run build",
     "preview": "npm --prefix my-react-app run preview"
   }
 }
