@@ -75,19 +75,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section">
-        <div className="container manifesto-inner">
-          <div>
-            <div className="kicker">The idea</div>
-            <h2>Light, <span className="red">held</span> still.</h2>
-          </div>
-          <div>
-            <p>For weddings, birthdays, family portraits, outdoor sessions and cultural celebrations in Chennai, our approach is simple: observe first, direct when needed, and leave enough room for real life to happen.</p>
-            <p style={{ marginTop: 16 }}>Classic portraits for the frame. Candid frames for the heart. A gallery that still feels like you years later.</p>
-          </div>
-        </div>
-      </section>
-
       <section className="section" style={{ background: 'var(--paper2)' }}>
         <div className="container">
           <div className="section-head">
