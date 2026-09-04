@@ -7,6 +7,7 @@ export default function Home() {
   const [activeSlide, setActiveSlide] = useState(0)
   const [reviewIndex, setReviewIndex] = useState(0)
   const reviewStart = useRef(null)
+  const reviewWheelLocked = useRef(false)
 
   useEffect(() => {
     deckImages.forEach(image => {
@@ -39,6 +40,14 @@ export default function Home() {
     const distance = event.clientX - reviewStart.current
     if (Math.abs(distance) > 55) moveReview(distance < 0 ? 1 : -1)
     reviewStart.current = null
+  }
+
+  const handleReviewWheel = (event) => {
+    if (reviewWheelLocked.current || Math.abs(event.deltaX) <= Math.abs(event.deltaY) || Math.abs(event.deltaX) < 8) return
+    event.preventDefault()
+    reviewWheelLocked.current = true
+    moveReview(event.deltaX > 0 ? 1 : -1)
+    window.setTimeout(() => { reviewWheelLocked.current = false }, 500)
   }
 
   return (
@@ -220,6 +229,7 @@ export default function Home() {
               onPointerDown={handleReviewPointerDown}
               onPointerUp={handleReviewPointerUp}
               onPointerCancel={() => { reviewStart.current = null }}
+              onWheel={handleReviewWheel}
               aria-live="polite"
             >
               <div className="review-track" style={{ transform: `translateX(-${reviewIndex * 100}%)` }}>
