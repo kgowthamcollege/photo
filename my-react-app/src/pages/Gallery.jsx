@@ -1,9 +1,12 @@
 import { useMemo, useState, useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { galleryImages } from '../data/content.js'
 
 export default function Gallery() {
   const categories = useMemo(() => ['All', ...new Set(galleryImages.map(g => g.category))], [])
-  const [filter, setFilter] = useState('All')
+  const [searchParams, setSearchParams] = useSearchParams()
+  const requestedCategory = searchParams.get('category')
+  const [filter, setFilter] = useState(() => categories.includes(requestedCategory) ? requestedCategory : 'All')
   const [active, setActive] = useState(null)
 
   const items = filter === 'All' ? galleryImages : galleryImages.filter(g => g.category === filter)
@@ -32,7 +35,7 @@ export default function Gallery() {
         <div className="container">
           <div className="gallery-filter">
             {categories.map(c => (
-              <button key={c} className={c === filter ? 'active' : ''} onClick={() => setFilter(c)}>{c}</button>
+              <button key={c} className={c === filter ? 'active' : ''} onClick={() => { setFilter(c); c === 'All' ? setSearchParams({}) : setSearchParams({ category: c }) }}>{c}</button>
             ))}
           </div>
           <div className="gallery-grid">

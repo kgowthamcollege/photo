@@ -20,7 +20,11 @@ export default function Services() {
                 <div className="service-image-wrap"><img src={s.img} alt={s.title} loading="lazy" /></div>
                 <div className="service-glass-panel">
                   <div className="service-num-badge">{s.num}</div>
-                  <div className="service-content"><h3>{s.title}</h3><p>{s.desc}</p></div>
+                  <div className="service-content">
+                    <h3>{s.title}</h3>
+                    <p>{s.desc}</p>
+                    <Link className="service-photos-link" to={`/gallery?category=${encodeURIComponent(s.title)}`} onClick={event => event.stopPropagation()}>View photos <span aria-hidden="true">↗</span></Link>
+                  </div>
                 </div>
               </div>
             ))}
