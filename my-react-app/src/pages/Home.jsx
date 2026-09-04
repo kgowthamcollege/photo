@@ -5,42 +5,22 @@ import { blogPosts, deckImages, faqs, galleryImages, INSTAGRAM, reels, services,
 export default function Home() {
   const [openFaq, setOpenFaq] = useState(0)
   const [activeSlide, setActiveSlide] = useState(0)
-  const [dragStartX, setDragStartX] = useState(null)
-  const [dragOffset, setDragOffset] = useState(0)
 
   useEffect(() => {
+    deckImages.forEach(image => {
+      const preloadImage = new Image()
+      preloadImage.src = image.img
+    })
+
     const timer = setInterval(() => {
       setActiveSlide(current => (current + 1) % deckImages.length)
-    }, 3200)
+    }, 4500)
 
     return () => clearInterval(timer)
   }, [])
 
   const goToSlide = (index) => {
     setActiveSlide((index + deckImages.length) % deckImages.length)
-  }
-
-  const handlePointerDown = (event) => {
-    setDragStartX(event.clientX)
-    setDragOffset(0)
-  }
-
-  const handlePointerMove = (event) => {
-    if (dragStartX === null) return
-    setDragOffset(event.clientX - dragStartX)
-  }
-
-  const handlePointerEnd = () => {
-    if (dragStartX === null) return
-
-    if (dragOffset < -60) {
-      goToSlide(activeSlide + 1)
-    } else if (dragOffset > 60) {
-      goToSlide(activeSlide - 1)
-    }
-
-    setDragStartX(null)
-    setDragOffset(0)
   }
 
   return (
@@ -50,16 +30,12 @@ export default function Home() {
           <div
             className="hero-visual"
             aria-label="Photography showcase"
-            onPointerDown={handlePointerDown}
-            onPointerMove={handlePointerMove}
-            onPointerUp={handlePointerEnd}
-            onPointerLeave={handlePointerEnd}
           >
-            <div className="hero-track" style={{ transform: `translateX(calc(-${activeSlide * 100}% + ${dragOffset}px))` }}>
+            <div className="hero-track">
               {deckImages.map((image, index) => (
-                <div className="hero-slide-panel" key={`${image.label}-${index}`}>
+                <div className={`hero-slide-panel ${index === activeSlide ? 'active' : ''}`} key={`${image.label}-${index}`}>
                   <div className="hero-slide">
-                    <img src={image.img} alt={image.label} loading="eager" />
+                    <img src={image.img} alt={image.label} loading={index === 0 ? 'eager' : 'lazy'} />
                     <div className="hero-slide-caption">
                       <span className="hero-slide-num">{image.n}</span>
                       <span>{image.label}</span>
