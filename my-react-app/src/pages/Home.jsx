@@ -26,50 +26,45 @@ export default function Home() {
   return (
     <>
       <section className="hero">
-        <div className="container">
-          <div
-            className="hero-visual"
-            aria-label="Photography showcase"
-          >
-            <div className="hero-track">
+        <div className="hero-carousel-wrap">
+          <div className="carousel-stage" aria-label="Photography showcase carousel" role="region">
+            <div className="carousel-track">
               {deckImages.map((image, index) => (
-                <div className={`hero-slide-panel ${index === activeSlide ? 'active' : ''}`} key={`${image.label}-${index}`}>
-                  <div className="hero-slide">
-                    <img src={image.img} alt={image.label} loading={index === 0 ? 'eager' : 'lazy'} />
-                    <div className="hero-slide-caption">
-                      <span className="hero-slide-num">{image.n}</span>
-                      <span>{image.label}</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="hero-dots" aria-label="Hero image slider controls">
-              {deckImages.map((image, index) => (
-                <button
-                  key={`${image.label}-${index}`}
-                  type="button"
-                  className={index === activeSlide ? 'active' : ''}
-                  aria-label={`Show ${image.label} slide`}
-                  onClick={() => goToSlide(index)}
-                />
+                <article className={`deck-card ${index === activeSlide ? 'is-active' : ''}`} key={`${image.label}-${index}`}>
+                  <img src={image.img} alt={image.label} loading={index === 0 ? 'eager' : 'lazy'} />
+                </article>
               ))}
             </div>
           </div>
+          <div className="carousel-dots" aria-label="Hero image slider controls">
+            {deckImages.map((image, index) => (
+              <button key={`${image.label}-${index}`} type="button" className={index === activeSlide ? 'active' : ''} aria-label={`Show ${image.label} slide`} onClick={() => goToSlide(index)} />
+            ))}
+          </div>
+        </div>
 
-          <div className="hero-copy-block">
-            <div className="hero-eyebrow">
-              <span>Chennai</span><span className="dot" /><span>Wedding</span>
-              <span className="dot" /><span>Portrait</span><span className="dot" /><span>Film</span>
+        <div className="container">
+          <div className="hero-grid">
+            <div>
+              <div className="category-line">
+                <span>Chennai</span><span className="dot" /><span>Wedding</span>
+                <span className="dot" /><span>Portrait</span><span className="dot" /><span>Film</span>
+              </div>
+              <div className="headline">
+                <div className="photograph">Photograph</div>
+                <div className="bottom-line">
+                  <div className="the">the</div>
+                  <div className="feeling-wrapper"><div className="feeling">feeling.</div></div>
+                </div>
+              </div>
             </div>
-            <h1>Photograph the <em>feeling.</em></h1>
-            <p className="hero-copy">We don't just cover an event. We keep the tiny glances, loud laughs, soft chaos and all the people you wish you could pause forever.</p>
-            <div className="hero-cta">
-              <Link className="btn dark" to="/booking">Book a session ↗</Link>
-              <Link className="btn light" to="/services">Explore services</Link>
-            </div>
-            <div className="hero-meta">
-              <span>5.0 on Google</span><span>Candid + Traditional</span><span>Chennai & travel</span>
+            <div className="hero-copy">
+              <p>We don't just cover an event. We keep the tiny glances, loud laughs, soft chaos and all the people you wish you could pause forever.</p>
+              <div className="hero-cta">
+                <Link className="btn dark" to="/booking">Book a session ↗</Link>
+                <Link className="btn light" to="/services">Explore services</Link>
+              </div>
+              <div className="hero-meta"><span>5.0 on Google</span><span>Candid + Traditional</span><span>Chennai & travel</span></div>
             </div>
           </div>
         </div>
