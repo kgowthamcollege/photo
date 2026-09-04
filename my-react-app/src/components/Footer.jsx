@@ -34,7 +34,12 @@ export default function Footer() {
         </div>
         <div className="copy">
           <span>© {new Date().getFullYear()} DIGITALEYE Photography</span>
-          <a href="https://asteroic.com" target="_blank" rel="noopener noreferrer">Powered by asteroic</a>
+          <span className="asteroic-credit">
+            <a href="https://asteroic.com" target="_blank" rel="noopener noreferrer">Powered by asteroic</a>
+            <a className="asteroic-logo-link" href="https://asteroic.com" target="_blank" rel="noopener noreferrer" aria-label="Visit asteroic.com">
+              <img src="/asteroic-logo.svg" alt="Asteroic" />
+            </a>
+          </span>
         </div>
       </div>
     </footer>
