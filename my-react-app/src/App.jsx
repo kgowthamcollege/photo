@@ -5,6 +5,7 @@ import Navbar from './Navbar.jsx'
 import Footer from './components/Footer.jsx'
 import FloatingActions from './components/FloatingActions.jsx'
 import Intro from './components/Intro.jsx'
+import BookingPopup from './components/BookingPopup.jsx'
 import Home from './pages/Home.jsx'
 import Services from './pages/Services.jsx'
 import Gallery from './pages/Gallery.jsx'
@@ -66,6 +67,13 @@ export default function App() {
       return !isAdmin
     }
   })
+  const [showBookingPopup, setShowBookingPopup] = useState(false)
+
+  useEffect(() => {
+    if (isAdmin || showIntro) return undefined
+    const timer = window.setTimeout(() => setShowBookingPopup(true), 3000)
+    return () => window.clearTimeout(timer)
+  }, [isAdmin, showIntro])
 
   const completeIntro = () => {
     try { sessionStorage.setItem(INTRO_KEY, '1') } catch { /* ignore */ }
@@ -98,6 +106,7 @@ export default function App() {
       </div>
       {!isAdmin && <Footer />}
       {!isAdmin && <FloatingActions />}
+      {showBookingPopup && <BookingPopup onClose={() => setShowBookingPopup(false)} />}
     </>
   )
 }
