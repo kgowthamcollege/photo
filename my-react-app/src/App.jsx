@@ -24,6 +24,34 @@ function ScrollToTop() {
   return null
 }
 
+function ScrollReveal() {
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    const sections = document.querySelectorAll('.page .hero, .page .page-hero, .page .section')
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    sections.forEach(section => section.classList.add('scroll-reveal'))
+    if (reducedMotion || !('IntersectionObserver' in window)) {
+      sections.forEach(section => section.classList.add('is-visible'))
+      return undefined
+    }
+
+    const observer = new IntersectionObserver((entries, currentObserver) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return
+        entry.target.classList.add('is-visible')
+        currentObserver.unobserve(entry.target)
+      })
+    }, { threshold: 0.12, rootMargin: '0px 0px -48px' })
+
+    sections.forEach(section => observer.observe(section))
+    return () => observer.disconnect()
+  }, [pathname])
+
+  return null
+}
+
 export default function App() {
   const location = useLocation()
   const isAdmin = location.pathname === '/admin'
@@ -55,6 +83,7 @@ export default function App() {
     <>
       {showIntro && <Intro onComplete={completeIntro} />}
       <ScrollToTop />
+      <ScrollReveal />
       {!isAdmin && <Navbar />}
       {showBackHome && (
         <Link className="page-home-back" to="/" aria-label="Back to home" title="Back to home">
