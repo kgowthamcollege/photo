@@ -32,7 +32,10 @@ export default function Navbar() {
       <nav className={`site-nav${scrolled ? ' scrolled' : ''}`}>
         <div className="nav-inner">
           <NavLink to="/" className="brand" aria-label="DIGITALEYE Photography home">
-            <img src={LOGO} alt="DIGITALEYE Photography" className="brand-logo" />
+            <span className="brand-logo-lockup">
+              <img src={LOGO} alt="DIGITALEYE Photography" className="brand-logo brand-logo-base" />
+              <img src={LOGO} alt="" aria-hidden="true" className="brand-logo brand-logo-text" />
+            </span>
           </NavLink>
           <div className="nav-links">
             {links.map(l => (

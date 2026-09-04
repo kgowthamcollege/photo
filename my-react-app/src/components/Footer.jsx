@@ -7,7 +7,10 @@ export default function Footer() {
       <div className="container">
         <div className="foot-grid">
           <div className="foot-brand">
-            <img src={LOGO} alt="DIGITALEYE Photography" className="brand-logo" />
+            <span className="brand-logo-lockup">
+              <img src={LOGO} alt="DIGITALEYE Photography" className="brand-logo brand-logo-base" />
+              <img src={LOGO} alt="" aria-hidden="true" className="brand-logo brand-logo-text" />
+            </span>
             <p>Wedding, birthday, outdoor, cultural and event photography in Chennai. Light, held still.</p>
           </div>
           <div className="foot-col">
