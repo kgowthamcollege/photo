@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { blogPosts, deckImages, faqs, galleryImages, INSTAGRAM, reels, services, reviews, YOUTUBE, youtubeVideos } from '../data/content.js'
 
 export default function Home() {
   const [openFaq, setOpenFaq] = useState(0)
   const [activeSlide, setActiveSlide] = useState(0)
+  const [reviewIndex, setReviewIndex] = useState(0)
+  const reviewStart = useRef(null)
 
   useEffect(() => {
     deckImages.forEach(image => {
@@ -21,6 +23,22 @@ export default function Home() {
 
   const goToSlide = (index) => {
     setActiveSlide((index + deckImages.length) % deckImages.length)
+  }
+
+  const moveReview = (direction) => {
+    setReviewIndex(current => (current + direction + reviews.length) % reviews.length)
+  }
+
+  const handleReviewPointerDown = (event) => {
+    reviewStart.current = event.clientX
+    event.currentTarget.setPointerCapture?.(event.pointerId)
+  }
+
+  const handleReviewPointerUp = (event) => {
+    if (reviewStart.current === null) return
+    const distance = event.clientX - reviewStart.current
+    if (Math.abs(distance) > 55) moveReview(distance < 0 ? 1 : -1)
+    reviewStart.current = null
   }
 
   return (
@@ -196,17 +214,38 @@ export default function Home() {
               <span className="g-dot">G</span> Read all Google reviews ↗
             </a>
           </div>
-          <div className="review-grid">
-            {reviews.map(r => (
-              <div className="review-card" key={r.name}>
-                <div className="review-stars">★★★★★</div>
-                <div className="review-quote">"{r.quote}"</div>
-                <div className="review-bottom">
-                  <div className="avatar">{r.avatar}</div>
-                  <div><div className="review-name">{r.name}</div><div className="review-role">Google review</div></div>
-                </div>
+          <div className="review-shell">
+            <div
+              className="review-viewport"
+              onPointerDown={handleReviewPointerDown}
+              onPointerUp={handleReviewPointerUp}
+              onPointerCancel={() => { reviewStart.current = null }}
+              aria-live="polite"
+            >
+              <div className="review-track" style={{ transform: `translateX(-${reviewIndex * 100}%)` }}>
+                {reviews.map(r => (
+                  <article className="review-slide" key={r.name}>
+                    <div className="review-card">
+                      <div className="review-stars">★★★★★</div>
+                      <div className="review-quote">"{r.quote}"</div>
+                      <div className="review-bottom">
+                        <div className="avatar">{r.avatar}</div>
+                        <div><div className="review-name">{r.name}</div><div className="review-role">Google review</div></div>
+                      </div>
+                    </div>
+                  </article>
+                ))}
               </div>
-            ))}
+            </div>
+            <div className="review-controls">
+              <button type="button" onClick={() => moveReview(-1)} aria-label="Previous customer review">←</button>
+              <div className="review-dots" aria-label="Customer review slides">
+                {reviews.map((r, index) => (
+                  <button key={r.name} type="button" className={index === reviewIndex ? 'active' : ''} onClick={() => setReviewIndex(index)} aria-label={`Show review from ${r.name}`} />
+                ))}
+              </div>
+              <button type="button" onClick={() => moveReview(1)} aria-label="Next customer review">→</button>
+            </div>
           </div>
         </div>
       </section>
