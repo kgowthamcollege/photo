@@ -1,5 +1,5 @@
 :root{
-  --paper:#fcfaf6;--paper2:#faf5eb;--ink:#161412;--muted:#7c7467;--line:rgba(22,20,18,.09);
+  --paper:#fcfaf6;--paper2:#faf5eb;--ink:#161412;--muted:#7c7467;--line:rgba(22,20,18,.07);
   --red:#d45946;--red2:#e27360;--dark:#1a1714;--cream:#f2e7d5;--white:#ffffff;
   --max:1240px;--pad:clamp(20px,5vw,72px);--ease:cubic-bezier(0.16,1,0.3,1)
 }
@@ -24,8 +24,8 @@ img{display:block;max-width:100%}
 .page-home-back:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 @media(max-width:959px){.page-home-back{top:86px;left:var(--pad)}}
 .section{padding:clamp(64px,9vw,110px) 0}
-.scroll-reveal{opacity:0;transform:translateY(34px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
-.scroll-reveal.is-visible{opacity:1;transform:translateY(0)}
+.scroll-reveal{opacity:0;visibility:hidden;transform:translateY(34px);transition:opacity .8s var(--ease),transform .8s var(--ease),visibility 0s linear .8s}
+.scroll-reveal.is-visible{opacity:1;visibility:visible;transform:translateY(0);transition-delay:0s}
 @media(prefers-reduced-motion:reduce){.scroll-reveal{opacity:1;transform:none;transition:none}}
 .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-bottom:48px}
 .section-head h2{font-family:"Playfair Display",Georgia,serif;font-size:clamp(32px,4.6vw,52px);line-height:1.05;letter-spacing:-.02em}
