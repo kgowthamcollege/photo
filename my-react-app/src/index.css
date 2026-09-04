@@ -24,9 +24,10 @@ img{display:block;max-width:100%}
 .page-home-back:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 @media(max-width:959px){.page-home-back{top:86px;left:var(--pad)}}
 .section{padding:clamp(64px,9vw,110px) 0}
-.scroll-reveal{opacity:0;visibility:hidden;transform:translateY(34px);transition:opacity .8s var(--ease),transform .8s var(--ease),visibility 0s linear .8s}
-.scroll-reveal.is-visible{opacity:1;visibility:visible;transform:translateY(0);transition-delay:0s}
-.scroll-reveal > .container > *{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.scroll-reveal{opacity:0;visibility:hidden;transform:translate3d(-44px,0,0);transition:opacity .8s var(--ease),transform .8s var(--ease),visibility 0s linear .8s}
+.scroll-reveal:nth-of-type(even){transform:translate3d(44px,0,0)}
+.scroll-reveal.is-visible{opacity:1;visibility:visible;transform:translate3d(0,0,0);transition-delay:0s}
+.scroll-reveal > .container > *{opacity:0;transform:translate3d(0,20px,0);transition:opacity .7s var(--ease),transform .7s var(--ease)}
 .scroll-reveal.is-visible > .container > *{opacity:1;transform:translateY(0)}
 .scroll-reveal.is-visible > .container > *:nth-child(2){transition-delay:.12s}
 .scroll-reveal.is-visible > .container > *:nth-child(3){transition-delay:.22s}
