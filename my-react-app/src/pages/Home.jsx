@@ -114,7 +114,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section instagram-reels-section">
         <div className="container">
           <div className="section-head">
             <div>
@@ -123,10 +123,10 @@ export default function Home() {
             </div>
             <Link className="btn light" to="/instagram">See all reels</Link>
           </div>
-          <div className="instagram-video-grid">
-            {reels.slice(0, 4).map(r => (
+          <div className="instagram-reels-carousel" aria-label="Instagram Reels showcase">
+            {reels.map((r, index) => (
               <a
-                className="instagram-video-card"
+                className="instagram-reel-card"
                 key={r.title}
                 href={INSTAGRAM}
                 target="_blank"
@@ -134,12 +134,16 @@ export default function Home() {
                 aria-label={`View on Instagram: ${r.title}`}
               >
                 <img src={r.img} alt={r.title} loading="lazy" />
-                <span className="instagram-video-play" aria-hidden="true">
+                <span className="instagram-reel-topline">
+                  <span>{String(index + 1).padStart(2, '0')} / {r.tag.split(' · ')[0].replace(' REEL', '')}</span>
+                  <span>INSTAGRAM ↗</span>
+                </span>
+                <span className="instagram-reel-play" aria-hidden="true">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
                 </span>
-                <span className="instagram-video-caption">
-                  <span>{r.n}</span>
-                  <strong>{r.title}</strong>
+                <span className="instagram-reel-caption">
+                  <strong>{index === 1 ? 'Golden Hour' : r.title}</strong>
+                  <span>WATCH ON INSTAGRAM · REEL</span>
                 </span>
               </a>
             ))}

@@ -169,7 +169,23 @@ img{display:block;max-width:100%}
 .gallery-item .label{position:absolute;left:10px;bottom:10px;color:#fff;font-size:12px;font-weight:600;z-index:2}
 .gallery-item:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,8,6,.55),transparent 55%)}
 
-/* Instagram video previews */
+/* Instagram Reels showcase */
+.instagram-reels-section{overflow:hidden;background:radial-gradient(circle,rgba(22,20,18,.07) 1.5px,transparent 1.5px);background-size:22px 22px}
+.instagram-reels-carousel{display:flex;gap:18px;overflow-x:auto;padding:4px var(--pad) 18px;margin:0 calc(var(--pad) * -1);scroll-snap-type:x mandatory;scroll-padding-inline:var(--pad);-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;scrollbar-width:none}
+.instagram-reels-carousel::-webkit-scrollbar{display:none}
+.instagram-reel-card{position:relative;flex:0 0 min(78vw,300px);aspect-ratio:9/16;overflow:hidden;border-radius:22px;background:var(--ink);color:#fff;scroll-snap-align:start;opacity:.72;transform:scale(.97);transition:opacity .45s var(--ease),transform .45s var(--ease);isolation:isolate}
+.instagram-reel-card:first-child,.instagram-reel-card:hover,.instagram-reel-card:focus-visible{opacity:1;transform:scale(1)}
+.instagram-reel-card img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform 1s var(--ease)}
+.instagram-reel-card:hover img{transform:scale(1.035)}
+.instagram-reel-card:after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(10,8,6,.24),transparent 30%,transparent 48%,rgba(10,8,6,.86) 100%);pointer-events:none}
+.instagram-reel-topline{position:absolute;top:20px;left:22px;right:22px;z-index:2;display:flex;justify-content:space-between;gap:12px;font:10px/1.2 "Courier New",monospace;letter-spacing:.16em;text-transform:uppercase}
+.instagram-reel-play{position:absolute;inset:0;z-index:2;margin:auto;width:64px;height:64px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.9);color:var(--ink);box-shadow:0 8px 25px rgba(10,8,6,.16)}
+.instagram-reel-play svg{margin-left:3px}
+.instagram-reel-caption{position:absolute;left:22px;right:22px;bottom:22px;z-index:2;display:grid;gap:7px}
+.instagram-reel-caption strong{font:400 clamp(25px,4vw,34px)/1 "Playfair Display",Georgia,serif}
+.instagram-reel-caption span{font:10px/1.2 "Courier New",monospace;letter-spacing:.12em;opacity:.82}
+@media(min-width:760px){.instagram-reels-carousel{justify-content:center}.instagram-reel-card{flex-basis:min(27vw,300px)}}
+
 .instagram-video-grid{display:grid;grid-template-columns:1fr;gap:18px}
 @media(min-width:640px){.instagram-video-grid{grid-template-columns:repeat(2,1fr)}}
 @media(min-width:1000px){.instagram-video-grid{grid-template-columns:repeat(4,1fr)}}
