@@ -26,7 +26,11 @@ img{display:block;max-width:100%}
 .section{padding:clamp(64px,9vw,110px) 0}
 .scroll-reveal{opacity:0;visibility:hidden;transform:translateY(34px);transition:opacity .8s var(--ease),transform .8s var(--ease),visibility 0s linear .8s}
 .scroll-reveal.is-visible{opacity:1;visibility:visible;transform:translateY(0);transition-delay:0s}
-@media(prefers-reduced-motion:reduce){.scroll-reveal{opacity:1;transform:none;transition:none}}
+.scroll-reveal > .container > *{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.scroll-reveal.is-visible > .container > *{opacity:1;transform:translateY(0)}
+.scroll-reveal.is-visible > .container > *:nth-child(2){transition-delay:.12s}
+.scroll-reveal.is-visible > .container > *:nth-child(3){transition-delay:.22s}
+@media(prefers-reduced-motion:reduce){.scroll-reveal,.scroll-reveal > .container > *{opacity:1;visibility:visible;transform:none;transition:none}}
 .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-bottom:48px}
 .section-head h2{font-family:"Playfair Display",Georgia,serif;font-size:clamp(32px,4.6vw,52px);line-height:1.05;letter-spacing:-.02em}
 .section-head p{max-width:340px;color:var(--muted);font-size:14px}
