@@ -7,13 +7,18 @@ export const YOUTUBE = 'https://www.youtube.com/@digitaleyesphotography'
 export const LOGO = 'https://ik.imagekit.io/e8vtmc5nh/Picsart_26-08-08_18-04-57-024.png?updatedAt=1786192525448'
 
 export const deckImages = [
-  { n: '01', label: 'Wedding', img: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1400&q=88' },
-  { n: '02', label: 'Birthday', img: 'https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=1400&q=88' },
-  { n: '03', label: 'Outdoor', img: 'https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=1400&q=88' },
-  { n: '04', label: 'Cultural', img: 'https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&w=1400&q=88' },
-  { n: '05', label: 'Drone', img: 'https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=1400&q=88' },
-  { n: '06', label: 'Events', img: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1400&q=88' },
-  { n: '07', label: 'Films', img: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=1400&q=88' },
+  { n: '01', label: 'Wedding', img: 'https://ik.imagekit.io/DigitalEye/466067802_18003305867678371_8923903447272246197_n%20(1).jpg' },
+  { n: '02', label: 'Portraits', img: 'https://ik.imagekit.io/DigitalEye/469287521_18006597026678371_9118262242243941704_n%20(1).jpg' },
+  { n: '03', label: 'Celebrations', img: 'https://ik.imagekit.io/DigitalEye/469286197_18006597008678371_6645585769543770892_n%20(1).jpg' },
+  { n: '04', label: 'Cultural', img: 'https://ik.imagekit.io/DigitalEye/IMG_20260903_200656.jpg' },
+  { n: '05', label: 'Events', img: 'https://ik.imagekit.io/DigitalEye/403884713_17958969668678371_5233486192324933618_n%20(1).jpg' },
+  { n: '06', label: 'Outdoor', img: 'https://ik.imagekit.io/DigitalEye/49676_1600x900.jpg' },
+  { n: '07', label: 'Films', img: 'https://ik.imagekit.io/DigitalEye/469314889_18006592556678371_6791374350391017584_n%20(2).jpg' },
+  { n: '08', label: 'Stories', img: 'https://ik.imagekit.io/DigitalEye/49724-16-9.png' },
+  { n: '09', label: 'Moments', img: 'https://ik.imagekit.io/DigitalEye/49727-16-9.png' },
+  { n: '10', label: 'Light', img: 'https://ik.imagekit.io/DigitalEye/49729-16-9.png' },
+  { n: '11', label: 'Frames', img: 'https://ik.imagekit.io/DigitalEye/49731-16-9.png' },
+  { n: '12', label: 'Forever', img: 'https://ik.imagekit.io/DigitalEye/49730-16-9.png' },
 ]
 
 export const services = [
